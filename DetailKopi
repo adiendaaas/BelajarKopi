@@ -1,0 +1,63 @@
+package com.example.belajarkopi;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+
+
+public class DetailKopi extends AppCompatActivity {
+
+    public static String extra_name = "name";
+    public static String extra_desc = "desc";
+    public static String extra_from = "from";
+    public static String extra_taste = "taste";
+    public static String extra_photo = "photo";
+
+    private TextView getTvName2;
+    private TextView getTvDesc2;
+    private TextView getTvFrom2;
+    private TextView getTvTaste2;
+    private ImageView getImgPhoto2;
+    private Context context = DetailKopi.this;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+
+        String name = getIntent().getStringExtra(extra_name);
+        String desc = getIntent().getStringExtra(extra_desc);
+        String from = getIntent().getStringExtra(extra_from);
+        String taste = getIntent().getStringExtra(extra_taste);
+        String photo = getIntent().getStringExtra(extra_photo);
+
+        getTvName2 = (TextView) findViewById(R.id.tv_item_name);
+        getTvName2.setText(name);
+
+        getTvDesc2 = (TextView) findViewById(R.id.tv_item_desc);
+        getTvDesc2.setText(desc);
+
+        getTvFrom2 = (TextView) findViewById(R.id.tv_item_from);
+        getTvFrom2.setText(from);
+
+        getTvTaste2 = (TextView) findViewById(R.id.tv_item_taste);
+        getTvTaste2.setText(taste);
+
+        getImgPhoto2 = (ImageView) findViewById(R.id.img_item_photo);
+        Glide.with(context).load(getIntent().getStringExtra("photo"))
+                .into(getImgPhoto2);
+
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
+    }
+}
